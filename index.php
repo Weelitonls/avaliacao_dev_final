@@ -1,35 +1,33 @@
 <?php
+session_start();
 
-require_once('Conexao.php');
-$oDb = new Conexao();
-$rLink = $oDb->fConecta_mysql();
-
-$sSql = '
+if(!isset($_SESSION['codigo']) || !isset($_SESSION['login'])) {
+  header("Location: login.php");
+  exit;
+}
+include 'funcoes.php';
+$sSql = "
   SELECT COUNT(*) AS TOTAL
-   FROM PRODUTO
-  WHERE EXCLUIDO = 0
-  ';
+   FROM PRODUTOS
+  WHERE DESCONTINUADO = 'F'
+  ";
 
-$rResultado = mysqli_query($rLink, $sSql);
+$rResultado = mysqli_query($link, $sSql);
 $iQtde_produtos = 0;
 
 if ($rResultado) {
   $aRegistro = mysqli_fetch_array($rResultado, MYSQLI_ASSOC);
   $iQtde_produtos = $aRegistro['TOTAL'];
-} else {
-  echo 'Erro';
 }
 
-$sSql = ' SELECT COUNT(*) AS TOTAL FROM VENDA';
+$sSql = 'SELECT COUNT(*) AS TOTAL FROM ORDENS';
 
-$rResultado = mysqli_query($rLink, $sSql);
+$rResultado = mysqli_query($link, $sSql);
 $iQtde_vendas = 0;
 
 if ($rResultado) {
   $aRegistro = mysqli_fetch_array($rResultado, MYSQLI_ASSOC);
   $iQtde_vendas = $aRegistro['TOTAL'];
-} else {
-  echo 'Erro';
 }
 
 ?>
@@ -51,19 +49,19 @@ if ($rResultado) {
   <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body>
   <div class="page">
     <div class="page-main">
       <div class="header py-4">
         <div class="container">
           <div class="d-flex">
             <a class="header-brand" href="./index.php">
-              <img src="./demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
+              <img src="./logo.jpg" class="header-brand-img" alt="tabler logo">
             </a>
             <div class="d-flex order-lg-2 ml-auto">
               <div>
                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                  <span class="avatar" style="background-image: url(./demo/faces/male/30.jpg)"></span>
+                  <span class="avatar"></span>
                   <span class="ml-2 d-none d-lg-block">
                     <span class="text-default">Weliton</span>
                     <small class="text-muted d-block mt-1">Administrator</small>
@@ -97,10 +95,10 @@ if ($rResultado) {
                   <a href="./produtos.php" class="nav-link"><i class="fe fe-package"></i> Produtos</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./form-venda.php" class="nav-link"><i class="fe fe-dollar-sign"></i> Venda</a>
+                  <a href="./fornecedores.php" class="nav-link"><i class="fe fe-dollar-sign"></i> Fornecedores</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./produtos-excluidos.php" class="nav-link"><i class="fe fe-trash"></i> Lixeira</a>
+                  <a href="./categorias.php" class="nav-link"><i class="fe fe-dollar-sign"></i> Categorias</a>
                 </li>
               </ul>
             </div>

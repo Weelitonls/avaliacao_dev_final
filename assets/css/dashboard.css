@@ -72,7 +72,7 @@ body {
   line-height: 1.5;
   color: #495057;
   text-align: left;
-  background-color: #f5f7fb;
+  background-color: #ffffff;
 }
 
 [tabindex="-1"]:focus {
@@ -10273,7 +10273,7 @@ body.fixed-header .page {
 .header {
   padding-top: .75rem;
   padding-bottom: .75rem;
-  background: #fff;
+  background: #f1f5f6;
   border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 }
 

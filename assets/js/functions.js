@@ -1,17 +1,7 @@
+function Alerta(msg) {
+  $('#alerta').html(msg);
+}
 
-$(document).ready(function () {
-  $('.dinheiro').mask('000000000000000,00', { reverse: true });
-  $('.codbar').mask('0000000000000');
-  $('.estoque').mask('000000000');
-});
-
-/**
- * Função responsável por excluir o produto
- *
- * @param {int} iId - Código do produto
- *
- * @return void
- */
 function jRemoverProduto(iId) {
 
   $.ajax({
