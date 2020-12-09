@@ -27,7 +27,7 @@
         <div class="container">
           <div class="row row-cards">
             <div class="offset-md-4 col-md-4">
-              <form class="card" action="funcoes.php" method="post">
+              <form class="card" action="logar.php" method="post">
                 <input type="hidden" name="acao" value="logar">
                 <div class="card-header text-center font-weight-bold">
                   BEM VINDO AO NORTHWIND

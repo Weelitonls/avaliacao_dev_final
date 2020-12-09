@@ -17,12 +17,4 @@ class Conexao
     }
     return $sCon;
   }
-
-  public function Vazio($sSql) {
-    if (mysqli_num_rows($sSql) > 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }

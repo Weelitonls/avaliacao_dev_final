@@ -1,11 +1,13 @@
 <?php
+require_once('Conexao.php');
+$oDb = new Conexao();
+$link = $oDb->Conectar();
 session_start();
 
 if(!isset($_SESSION['codigo']) || !isset($_SESSION['login'])) {
   header("Location: login.php");
   exit;
 }
-include 'funcoes.php';
 $sSql = "
   SELECT COUNT(*) AS TOTAL
    FROM PRODUTOS
@@ -46,7 +48,6 @@ if ($rResultado) {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
   <link href="./assets/css/dashboard.css" rel="stylesheet" />
-  <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -60,12 +61,9 @@ if ($rResultado) {
             </a>
             <div class="d-flex order-lg-2 ml-auto">
               <div>
-                <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                  <span class="avatar"></span>
-                  <span class="ml-2 d-none d-lg-block">
-                    <span class="text-default">Weliton</span>
-                    <small class="text-muted d-block mt-1">Administrator</small>
-                  </span>
+                <span class="text-default">Bem vindo, <?=$_SESSION['nome']?></span>
+                <a href="login.php?login=off" class="nav-link pr-0 leading-none">
+                  <span class="text-danger">Sair</span>
                 </a>
               </div>
             </div>
@@ -95,10 +93,10 @@ if ($rResultado) {
                   <a href="./produtos.php" class="nav-link"><i class="fe fe-package"></i> Produtos</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./fornecedores.php" class="nav-link"><i class="fe fe-dollar-sign"></i> Fornecedores</a>
+                  <a href="./excluidos.php" class="nav-link"><i class="fe fe-trash"></i> Lixeira</a>
                 </li>
                 <li class="nav-item">
-                  <a href="./categorias.php" class="nav-link"><i class="fe fe-dollar-sign"></i> Categorias</a>
+                  <a href="./categorias.php" class="nav-link"><i class="fe fe-package"></i> Categorias</a>
                 </li>
               </ul>
             </div>
@@ -109,7 +107,7 @@ if ($rResultado) {
         <div class="container">
           <div class="page-header">
             <h1 class="page-title">
-              Home
+              Bem vindo ao NorthWind!
             </h1>
           </div>
           <div class="row row-cards">
@@ -145,7 +143,6 @@ if ($rResultado) {
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="./assets/plugins/input-mask/js/jquery.mask.min.js"></script>
   <script src="./assets/js/functions.js"></script>
 </body>
 
