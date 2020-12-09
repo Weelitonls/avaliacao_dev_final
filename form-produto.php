@@ -156,7 +156,7 @@ if ($IDProduto > 0) {
                       $optionsC = [];
                       if (!empty($ResultadoF)) {
                         while ($Fs = mysqli_fetch_array($ResultadoF, MYSQLI_ASSOC)) {
-                          if ($Produto['IDFornecedor'] == $Fs['IDFORNECEDOR']) {
+                          if (!empty($Produto['IDFornecedor']) && $Produto['IDFornecedor'] == $Fs['IDFORNECEDOR']) {
                             $optionsF[] = sprintf($option, $Fs['IDFORNECEDOR'], 'selected="selected"', $Fs['NOMECOMPANHIA']);
                           } else {
                             $optionsF[] = sprintf($option, $Fs['IDFORNECEDOR'], '', $Fs['NOMECOMPANHIA']);
@@ -166,7 +166,7 @@ if ($IDProduto > 0) {
 
                       if (!empty($ResultadoC)) {
                         while ($Cs = mysqli_fetch_array($ResultadoC, MYSQLI_ASSOC)) {
-                          if ($Produto['IDCategoria'] == $Cs['IDCATEGORIA']) {
+                          if (!empty($Produto['IDCategoria']) && $Produto['IDCategoria'] == $Cs['IDCATEGORIA']) {
                             $optionsC[] = sprintf($option, $Cs['IDCATEGORIA'], 'selected="selected"', $Cs['NOMECATEGORIA']);
                           } else {
                             $optionsC[] = sprintf($option, $Cs['IDCATEGORIA'], '', $Cs['NOMECATEGORIA']);

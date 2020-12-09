@@ -23,12 +23,10 @@ $sql = sprintf(
   , number_format($_POST['preco'], 2,'.','')
   , $_POST['id']
 );
-var_dump($sql);
+
 if (mysqli_query($link, $sql)) {
   header("Location: produtos.php");
-  exit;
 } else {
   header(sprintf("Location: form-produto.php?produto=%s", $_POST['id']));
-  exit;
 }
 ?>

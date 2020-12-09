@@ -22,12 +22,9 @@ if ($total) {
     $_SESSION['nome'] = $dados['nome'];
     $_SESSION['login'] = stripslashes($dados['login']);
     header("Location: index.php");
-    exit;
   } else {
     header("Location: login.php");
-    exit;
   }
 } else {
   header("Location: login.php");
-  exit;
 }
